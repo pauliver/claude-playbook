@@ -1,0 +1,7 @@
+# --- claude-playbook: append to .gitignore ---
+.claude/settings.local.json
+.claude/.observatory-hooks.jsonl
+.claude/worktrees/
+.claude/scheduled_tasks.lock
+*-last.log
+artifacts/

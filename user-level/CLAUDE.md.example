@@ -1,0 +1,16 @@
+# ~/.claude/CLAUDE.md — loaded in EVERY project on this machine
+
+Two halves: facts about THIS MACHINE (keep them here — they are true in every repo on this box and nowhere else),
+and the portable way of working (imported below, shared with every machine you use).
+
+## This machine
+
+<!-- Facts about the filesystem, toolchains and hardware that bite in every repo. Examples worth having:
+  - Network mounts inside $HOME (and therefore: never recursively walk $HOME or /; no bare df/lsof/sync).
+  - Toolchain traps that fail under another tool's name (e.g. an Xcode upgrade un-agreeing the licence).
+  - Which machine this is in your fleet, and what else is on the network.
+  - Where secrets live (key stores, never repos), and what data is irreplaceable (never delete/dedupe it). -->
+
+## The way of working (every repo)
+
+@~/.claude/way-of-working.md

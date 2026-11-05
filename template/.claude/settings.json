@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "model": "opus",
+  "effortLevel": "high",
+  "env": {
+    "MSBUILDDISABLENODEREUSE": "1",
+    "DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER": "1",
+    "UseSharedCompilation": "false"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(git status:*)",
+      "Bash(git log:*)",
+      "Bash(git diff:*)",
+      "Bash(git fetch:*)",
+      "Bash(git worktree list:*)",
+      "Bash(gh issue list:*)",
+      "Bash(gh issue view:*)",
+      "Bash(gh label list:*)",
+      "Bash(bash scripts/run-full-tests.sh:*)",
+      "Bash(bash scripts/wrap-up-check.sh:*)"
+    ],
+    "deny": [
+      "Bash(git add -A:*)",
+      "Bash(git commit -a:*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|Grep|Glob",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/machine-guard.py",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}
