@@ -128,6 +128,11 @@ The portable rules for working with Claude. Each one has a scar behind it; the e
 - One home per fact: rules → CLAUDE.md (short) · process → `docs/` · state → one overwritten STATUS file · decisions
   → D-log · lessons → memory · findings → the owning issue. Numbers carry `(measured <sha>, <date>, <OS>)`, once.
 - Handoffs go in the repo (`.claude/work/state-<date>.md`), never only in a conversation.
+- **PDBWC is the second brain** (`pauliver/PDBWC`, "Paul's DataBase, Working Copy", `~/Projects/PDBWC`). Anything
+  broader than the repo you're in goes there as an issue or a note: the Apple developer team, TestFlight or App Store
+  Connect across apps, devices, accounts, the machines, cross-project facts, and anything a second brain should track.
+  Use only labels that exist there. A finding that touches both gets filed in PDBWC and linked from the repo's issue.
+  (Owner, 2026-11-07; first one PDBWC#242.)
 
 ## 7. Working with the owner
 
