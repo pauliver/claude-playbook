@@ -111,6 +111,14 @@ The portable rules for working with Claude. Each one has a scar behind it; the e
   a clean checkout, push only what you verified.
 - **A dead agent looks like a clean one.** Notifications aren't guaranteed: after ~20 min, check commits, output
   mtime and lock. A reviewer that returned nothing is no review. Stop finished agents at once.
+- **Agents never wait.** A lane runs only its own packages' tests and reports the moment its commits are in. It never
+  runs the full gate, a release build or anything queued on a shared lock, and never sleep-polls. Integration is
+  serial, so the gate is the main session's, run once on the merged tree. **TaskStop each agent as soon as its report
+  arrives:** a finished agent with a live background job is woken, and billed, when that job ends. A run of status
+  checks in an agent's transcript means it's waiting: make it report now, or stop it and land its branch yourself.
+  A long job it started can run on alone. Enforce it where you can: the repo's gate refuses to run inside an agent
+  worktree. (Scar, 2026-11-08: four lanes queued for their own gate behind one lock, waking every ~3 min;
+  one ran 8 h, mostly waiting.)
 - **Concurrency:** integration is serial; review parallelises. Width = min(RAM at ~8 GB/session, CPU). One build lane
   per box; split lanes by file ownership; verify a batch before dispatching the next. At ~90% weekly usage: one agent.
 - **Models:** the heavier model decides, the lighter does. Bare aliases (`opus`/`sonnet`/`haiku`) — dated pins rot.

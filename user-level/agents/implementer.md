@@ -18,14 +18,15 @@ model: opus
 3. **Test first;** see it fail *for the right reason*.
 4. **Smallest correct change,** scoped to the issue: no gold-plating, drive-by refactors, stubs or TODOs, no
    production branch that exists only for a test.
-5. **Gate** (the repo's, or the lanes your brief names); read the SUMMARY — a zero-test lane is not green.
+5. **Test your lane:** the packages you touched (or the lanes your brief names), never the full gate, a release build
+   or anything queued on a shared lock; read the counts. A zero-test lane is not green. The main session gates the merge.
 6. **Negative proof:** mutate the fix → new test red → restore → green; record it in the commit.
 7. **Commit** by explicit path (`git add <files>`, `git commit <files>`), message per way-of-working §4.
 8. **Commit early** on large work — a green half committed is safe; a dirty tree is not.
 
 ## Never
 Push · close/label issues · verify your own work ("ready for independent verification") · `git add -A` · kill by
-process name · run the full suite beside another gate · edit another lane's files (say what remains) · ask the owner
+process name · run the full gate or a release build · queue on a shared lock, sleep-poll or wait for anything · edit another lane's files (say what remains) · ask the owner
 (list questions in your report).
 
 ## Report — final message, or SendMessage to main if backgrounded
